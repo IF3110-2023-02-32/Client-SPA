@@ -13,4 +13,4 @@ RUN npm run build
 
 # start app
 EXPOSE 3000
-CMD ["npm", "run", "preview"]
+CMD ["npm", "run", "docker"]
