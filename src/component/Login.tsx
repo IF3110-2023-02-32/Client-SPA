@@ -23,6 +23,8 @@ function Login() {
           console.log(username)
           console.log(password)
           // nanti disini login ke API
+          localStorage.setItem('username', username)
+          window.location.href = '/home'
       }
   }
   return (
@@ -67,7 +69,7 @@ function Login() {
           </Button>
         </VStack>
         <FormLabel>
-          Don't have an account? <a href='#'>Register</a>
+          Don't have an account? <a href='http://localhost:8008/login'>Register</a>
         </FormLabel>
       </Box>
   )
