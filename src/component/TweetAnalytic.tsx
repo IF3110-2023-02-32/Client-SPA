@@ -4,6 +4,7 @@ import {Box, Text} from '@chakra-ui/react';
 import BoxContent from './BoxContent';
 import Navbar from './Navbar';
 import { useLocation } from "react-router-dom"
+import axios from 'axios';
 
 interface Data {
     day: string;
@@ -12,10 +13,10 @@ interface Data {
 interface Content{
     username : string;
     id : number;
-    name : string;
+    profile_name : string;
     post_id : number;
     body : string;
-    date_created : string;
+    created_at : string;
     path : string;
 }
 function TweetAnalytic(){
@@ -25,11 +26,57 @@ function TweetAnalytic(){
     const location = useLocation()
     const params = new URLSearchParams(location.search)
     const id = params.get('id');
+    const idowner = localStorage.getItem('id')!;
+    const idownerinteger = parseInt(idowner);
+
     if(id === null){
-        console.log('all');
+        useEffect(()=>{
+            let urlview = 'http://localhost:3030/post/view/'+idownerinteger;
+            let urlreply = 'http://localhost:3030/post/reply/'+idownerinteger;
+            let urllike = 'http://localhost:3030/post/like/'+idownerinteger;
+            let urlcontent = 'http://localhost:3030/post/'+idownerinteger;
+            axios.get(urlview).then((res)=>{
+                console.log(res.data);
+                setViewData(res.data);
+            })
+            axios.get(urlreply).then((res)=>{
+                console.log(res.data);
+                setReplyData(res.data);
+            })
+            axios.get(urllike).then((res)=>{
+                console.log(res.data);
+                setLikeData(res.data);
+            })
+            axios.get(urlcontent).then((res)=>{
+                console.log(res.data);
+                setContent(res.data);
+            })
+        },[])
+
     }
     else{
-        console.log(id);
+        useEffect(()=>{
+            let urlview = 'http://localhost:3030/post/view/'+idownerinteger+"/"+id;
+            let urlreply = 'http://localhost:3030/post/reply/'+idownerinteger+"/"+id;
+            let urllike = 'http://localhost:3030/post/like/'+idownerinteger+"/"+id;
+            let urlcontent = 'http://localhost:3030/post/'+idownerinteger+"/"+id;
+            axios.get(urlview).then((res)=>{
+                console.log(res.data);
+                setViewData(res.data);
+            })
+            axios.get(urlreply).then((res)=>{
+                console.log(res.data);
+                setReplyData(res.data);
+            })
+            axios.get(urllike).then((res)=>{
+                console.log(res.data);
+                setLikeData(res.data);
+            })
+            axios.get(urlcontent).then((res)=>{
+                console.log(res.data);
+                setContent(res.data);
+            })
+        },[])
     }
     const initialData = [
         { day : 'Mon' , total : 0 },
@@ -45,111 +92,7 @@ function TweetAnalytic(){
     const [viewData, setViewData] = useState<Data[]>(initialData);
     const [content, setContent] = useState<Content[]>([]);
 
-    //Dummy Data
-    const LikeData = [
-        { day : 'Mon' , total : 1000 },
-        { day : 'Tue' , total : 3000 },
-        { day : 'Wed' , total : 2000 },
-        { day : 'Thu' , total : 5000 },
-        { day : 'Fri' , total : 4000 },
-        { day : 'Sat' , total : 3000 },
-        { day : 'Sun' , total : 1000 },
-    ];
-    
-    const ViewsData = [
-        { day : 'Mon' , total : 1000 },
-        { day : 'Tue' , total : 3000 },
-        { day : 'Wed' , total : 2000 },
-        { day : 'Thu' , total : 5000 },
-        { day : 'Fri' , total : 4000 },
-        { day : 'Sat' , total : 3000 },
-        { day : 'Sun' , total : 1000 },
-    ];
-
-    const RepliesData = [
-        { day: 'Mon', total: 1000 },
-        { day: 'Tue', total: 3000 },
-        { day: 'Wed', total: 2000 },
-        { day: 'Thu', total: 5000 },
-        { day: 'Fri', total: 4000 },
-        { day: 'Sat', total: 3000 },
-        { day: 'Sun', total: 1000 },
-    ];
-
-    const ContentData = [
-        {
-            username: 'user1',
-            id: 1,
-            name: 'user1',
-            post_id: 1,
-            body: 'tweet1',
-            date_created: '2021-05-31',
-            path: 'https://pbs.twimg.com/media/E2Zu8mTUcAAGzDg?format=jpg&name=small'
-        },
-        {
-            username: 'user2',
-            id: 2,
-            name: 'user2',
-            post_id: 2,
-            body: 'tweet2',
-            date_created: '2021-05-31',
-            path: 'https://pbs.twimg.com/media/E2Zu8mTUcAAGzDg?format=jpg&name=small'
-        },
-        {
-            username: 'user3',
-            id: 3,
-            name: 'user3',
-            post_id: 3,
-            body: 'tweet3',
-            date_created: '2021-05-31',
-            path: 'https://pbs.twimg.com/media/E2Zu8mTUcAAGzDg?format=jpg&name=small'
-        },
-        {
-            username: 'user4',
-            id: 4,
-            name: 'user4',
-            post_id: 4,
-            body: 'tweet4',
-            date_created: '2021-05-31',
-            path: 'https://pbs.twimg.com/media/E2Zu8mTUcAAGzDg?format=jpg&name=small'
-        },
-        {
-            username: 'user5',
-            id: 5,
-            name: 'user5',
-            post_id: 5,
-            body: 'tweet5',
-            date_created: '2021-05-31',
-            path: 'https://pbs.twimg.com/media/E2Zu8mTUcAAGzDg?format=jpg&name=small'
-        },
-        {
-            username: 'user6',
-            id: 6,
-            name: 'user6',
-            post_id: 6,
-            body: 'tweet6',
-            date_created: '2021-05-31',
-            path: 'https://pbs.twimg.com/media/E2Zu8mTUcAAGzDg?format=jpg&name=small'
-        },
-        {
-            username: 'user7',
-            id: 7,
-            name: 'user7',
-            post_id: 7,
-            body: 'tweet7',
-            date_created: '2021-05-31',
-            path: 'https://pbs.twimg.com/media/E2Zu8mTUcAAGzDg?format=jpg&name=small'
-        },
-    ];
-        
-
     //Set Data
-    useEffect(() => {
-        setLikeData(LikeData);
-        setViewData(ViewsData);
-        setReplyData(RepliesData);
-        setContent(ContentData);
-    }, [])
 
     const makeContentBox = () => {
         let contentBox = [];

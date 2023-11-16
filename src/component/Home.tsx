@@ -2,27 +2,25 @@ import {useState,useEffect} from "react";
 import Navbar from "./Navbar";
 import {Text,Box, Center} from "@chakra-ui/react";
 import LineChartAssetsHome from "./LineChartAssetsHome";
+import axios from "axios";
 
 
 function Home(){
     // const [username,setUsername] = useState('');
     const [name,setName] = useState('');
     const [followData,setFollowData] = useState<any[]>([]);
-    const nama = 'Sulthan'
+    const nama = localStorage.getItem('username')!;
+    const id = localStorage.getItem('id')!;
+    const idinteger = parseInt(id);
     useEffect(()=>{
-        // setUsername(localStorage.getItem('username')!);
         setName(nama);
-        setFollowData(FollowData);
+        // setFollowData(FollowData);
+        let url = 'http://localhost:3030/follow/'+idinteger;
+        axios.get(url).then((res)=>{
+            console.log(res.data);
+            setFollowData(res.data);
+        })
     },[])
-    const FollowData = [
-        { day : 'Mon' , total : 1000 },
-        { day : 'Tue' , total : 3000 },
-        { day : 'Wed' , total : 2000 },
-        { day : 'Thu' , total : 5000 },
-        { day : 'Fri' , total : 4000 },
-        { day : 'Sat' , total : 3000 },
-        { day : 'Sun' , total : 1000 },
-    ];
     if(localStorage.getItem('username') === null){
         window.location.href = '/login';
     }

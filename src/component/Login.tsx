@@ -24,6 +24,7 @@ function Login() {
           console.log(password)
           // nanti disini login ke API
           localStorage.setItem('username', username)
+          localStorage.setItem('id', '1')
           window.location.href = '/home'
       }
   }
