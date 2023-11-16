@@ -28,6 +28,7 @@ function TweetAnalytic(){
     const id = params.get('id');
     const idowner = localStorage.getItem('id')!;
     const idownerinteger = parseInt(idowner);
+    const token = localStorage.getItem('token')!;
 
     if(id === null){
         useEffect(()=>{
@@ -35,20 +36,16 @@ function TweetAnalytic(){
             let urlreply = 'http://localhost:3030/post/reply/'+idownerinteger;
             let urllike = 'http://localhost:3030/post/like/'+idownerinteger;
             let urlcontent = 'http://localhost:3030/post/'+idownerinteger;
-            axios.get(urlview).then((res)=>{
-                console.log(res.data);
+            axios.get(urlview,{ headers: { Authorization: `Bearer ${token}` } }).then((res)=>{
                 setViewData(res.data);
             })
-            axios.get(urlreply).then((res)=>{
-                console.log(res.data);
+            axios.get(urlreply,{ headers: { Authorization: `Bearer ${token}` } }).then((res)=>{
                 setReplyData(res.data);
             })
-            axios.get(urllike).then((res)=>{
-                console.log(res.data);
+            axios.get(urllike,{ headers: { Authorization: `Bearer ${token}` } }).then((res)=>{
                 setLikeData(res.data);
             })
-            axios.get(urlcontent).then((res)=>{
-                console.log(res.data);
+            axios.get(urlcontent,{ headers: { Authorization: `Bearer ${token}` } }).then((res)=>{
                 setContent(res.data);
             })
         },[])
@@ -60,20 +57,16 @@ function TweetAnalytic(){
             let urlreply = 'http://localhost:3030/post/reply/'+idownerinteger+"/"+id;
             let urllike = 'http://localhost:3030/post/like/'+idownerinteger+"/"+id;
             let urlcontent = 'http://localhost:3030/post/'+idownerinteger+"/"+id;
-            axios.get(urlview).then((res)=>{
-                console.log(res.data);
+            axios.get(urlview,{ headers: { Authorization: `Bearer ${token}` } }).then((res)=>{
                 setViewData(res.data);
             })
-            axios.get(urlreply).then((res)=>{
-                console.log(res.data);
+            axios.get(urlreply,{ headers: { Authorization: `Bearer ${token}` } }).then((res)=>{
                 setReplyData(res.data);
             })
-            axios.get(urllike).then((res)=>{
-                console.log(res.data);
+            axios.get(urllike,{ headers: { Authorization: `Bearer ${token}` } }).then((res)=>{
                 setLikeData(res.data);
             })
-            axios.get(urlcontent).then((res)=>{
-                console.log(res.data);
+            axios.get(urlcontent,{ headers: { Authorization: `Bearer ${token}` } }).then((res)=>{
                 setContent(res.data);
             })
         },[])
@@ -97,7 +90,7 @@ function TweetAnalytic(){
     const makeContentBox = () => {
         let contentBox = [];
         for (let i = 0; i < content.length; i++) {
-            contentBox.push(<BoxContent data={content[i]} key={content[i].id} />)
+            contentBox.push(<BoxContent data={content[i]} key={content[i].post_id} />)
         }
         return contentBox;
     }

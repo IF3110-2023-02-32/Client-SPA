@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex ,Button} from '@chakra-ui/react';
 const Navbar = () => {
+    function refresh(){
+        window.location.href = '/home';
+    }
     return (
     <Flex
         as="nav"
@@ -15,9 +18,9 @@ const Navbar = () => {
         width="100%"
         zIndex="1000" 
     >
-        <Text fontSize="xl" fontWeight="bold" marginLeft={4}>
-        Analytic
-        </Text>
+        <Button colorScheme='blue' marginLeft={4} onClick={()=>{refresh()}}>
+                Refresh
+        </Button>
 
         <Box display="flex" alignItems="center">
         <Box marginRight={4}>

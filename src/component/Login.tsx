@@ -9,6 +9,7 @@ import { FormControl,
 import { Button } from '@chakra-ui/react'
 import React from 'react'
 import { Input } from '@chakra-ui/react'
+import axios from 'axios'
 
 function Login() {
   const [username, setUsername] = React.useState('')
@@ -23,9 +24,22 @@ function Login() {
           console.log(username)
           console.log(password)
           // nanti disini login ke API
-          localStorage.setItem('username', username)
-          localStorage.setItem('id', '1')
-          window.location.href = '/home'
+          // localStorage.setItem('username', username)
+          // localStorage.setItem('id', '1')
+          axios.post('http://localhost:3030/login', {
+              username: username,
+              password: password
+          }).then((res)=>{
+              if(res.data.message === 'error'){
+                  alert('Wrong username or password')
+              }
+              else{
+                  localStorage.setItem('username', username)
+                  localStorage.setItem('id', res.data.user_id)
+                  localStorage.setItem('token', res.data.accesstoken)
+                  window.location.href = '/home'
+              }
+          })
       }
   }
   return (
@@ -70,7 +84,7 @@ function Login() {
           </Button>
         </VStack>
         <FormLabel>
-          Don't have an account? <a href='http://localhost:8008/login'>Register</a>
+          Don't have an account? <a href='/register'>Register</a>
         </FormLabel>
       </Box>
   )

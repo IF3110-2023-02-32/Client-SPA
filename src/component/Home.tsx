@@ -12,11 +12,12 @@ function Home(){
     const nama = localStorage.getItem('username')!;
     const id = localStorage.getItem('id')!;
     const idinteger = parseInt(id);
+    const token = localStorage.getItem('token')!;
     useEffect(()=>{
         setName(nama);
         // setFollowData(FollowData);
         let url = 'http://localhost:3030/follow/'+idinteger;
-        axios.get(url).then((res)=>{
+        axios.get(url,{ headers: { Authorization: `Bearer ${token}` } }).then((res)=>{
             console.log(res.data);
             setFollowData(res.data);
         })

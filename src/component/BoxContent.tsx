@@ -6,8 +6,7 @@ const BoxContent = ({ data }:any) => {
     const location = useLocation()
     const params = new URLSearchParams(location.search)
     const id = params.get('id');
-    const idowner = localStorage.getItem('id')!;
-    const idownerinteger = parseInt(idowner);
+    const usernameowner = localStorage.getItem('username')
     let buttondetail;
     if(id === null){
         buttondetail = <Button colorScheme='blue' mt='10px' onClick={() => window.location.href='/tweet-analytic?id='+data.post_id}>
@@ -28,7 +27,7 @@ const BoxContent = ({ data }:any) => {
                 Post ID : {data.post_id}
             </Text>
             {buttondetail}
-            <Button marginLeft={5} colorScheme='facebook' mt='10px' onClick={() => window.location.href='http://localhost:8008/post/'+idownerinteger+"/"+data.post_id}>
+            <Button marginLeft={5} colorScheme='facebook' mt='10px' onClick={() => window.location.href='http://localhost:8008/post/'+usernameowner+"/"+data.post_id}>
                 To Post
             </Button>
         </Box>
