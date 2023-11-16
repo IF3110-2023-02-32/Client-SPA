@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Box, Flex ,Button} from '@chakra-ui/react';
+import axios from 'axios';
+
 const Navbar = () => {
     function refresh(){
-        window.location.href = '/home';
+        const username = localStorage.getItem('username');
+        if(username !== null){
+            axios.get('http://localhost:3030/refreshdata/'+username).then(() => window.location.reload());
+        }
     }
     return (
     <Flex
