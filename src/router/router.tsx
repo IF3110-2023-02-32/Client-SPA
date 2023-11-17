@@ -3,6 +3,8 @@ import Login from '../component/Login'
 import TweetAnalytic from '../component/TweetAnalytic'
 import Home from '../component/Home'
 import Register from '../component/Register'
+import SelectCompare from '../component/SelectCompare'
+import Compare from '../component/Compare'
 
 const routesList = createBrowserRouter([
     {
@@ -24,6 +26,14 @@ const routesList = createBrowserRouter([
     {
         path: '/',
         element: <Login />,
+    },
+    {
+        path: '/compare',
+        element: <SelectCompare />,
+    },
+    {
+        path: '/compare/content?',
+        element: <Compare />,
     },
     
   ])

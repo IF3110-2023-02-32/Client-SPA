@@ -39,6 +39,11 @@ const Navbar = () => {
             </Link>
         </Box>
         <Box marginRight={4}>
+            <Link to="/compare">
+                Compare
+            </Link>
+        </Box>
+        <Box marginRight={4}>
             <Link to="/login" onClick={()=>{localStorage.removeItem('username')}}>
                 Logout
             </Link>
