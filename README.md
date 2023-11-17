@@ -1,27 +1,21 @@
-# React + TypeScript + Vite
+# Deskripsi Client SPA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SPA atau biasa disebut Single Page Application merupakan aplikasi berbasis web yang memiliki satu halaman. Satu halaman ini memiliki beberapa fitur yang bisa berjalan asinkronus. Kerena berjalan asinkronus, tiap fitur dapat berjalan sendiri tanpa menunggu fitur lain berjalan. 
 
-Currently, two official plugins are available:
+Pada Client SPA yang kami buat merupakan aplikasi dashboard yang digunakan untuk melihat analitik dari berbagai data. Data data ini merupakan data user dari sebuah post pada hari tertentu, seperti like, replies, dan view. Untuk menampilkan dashboard hasil analitik dengan menggunakan chart untuk melihat perkembangan dari data data post dari 1 minggu kebelakang. Selain itu juga ada analitik follower yang digunakan untuk melihat pertemanan pada user pada 1 minggu kebelakang. Analitik dari post bisa dilihat secara data keseluruhan post ataupun tiap post. Selain itu, aplikasi dapat membandingkan dari 2 analitik post yang berbeda.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Tampilan Layar
 
-## Expanding the ESLint configuration
+![Alt text](image.png)
+![Alt text](image-1.png)
+![Alt text](image-2.png)
+![Alt text](image-3.png)
+![Alt text](image-4.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Pembagian Tugas
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+ - Login Register (Sulthan Dzaky Alfaro 13521159)
+ - Analitik Follower (Sulthan Dzaky Alfaro 13521159)
+ - Analitik Keseluruhan Post (Sulthan Dzaky Alfaro 13521159)
+ - Analitik Suatu Post (Sulthan Dzaky Alfaro 13521159)
+ - Compare Analitik Post (Sulthan Dzaky Alfaro 13521159)
